@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0a10">
+  <meta name="description" content="NEXORA builds organized, custom Discord communities with thoughtful design, reliable setup, and practical systems.">
+  <title>NEXORA — Discord communities, built differently.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0a10; --panel: #12111a; --panel2: #171520; --line: rgba(255,255,255,.09);
+      --text: #f5f2fb; --muted: #a7a1b3; --purple: #a78bfa; --purple2: #7c5ce0;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: "DM Sans", sans-serif; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(var(--max), calc(100% - 44px)); margin: auto; }
+    .nav { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(18px); background: rgba(11,10,16,.78); border-bottom: 1px solid var(--line); }
+    .navin { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 11px; font: 700 20px "Space Grotesk", sans-serif; letter-spacing: .13em; }
+    .mark { width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid rgba(167,139,250,.55); border-radius: 10px; color: var(--purple); background: linear-gradient(145deg, rgba(167,139,250,.18), rgba(167,139,250,.02)); font-size: 18px; }
+    .links { display: flex; gap: 28px; align-items: center; color: #c7c1d2; font-size: 13px; }
+    .links a:hover { color: white; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 12px 18px; border-radius: 10px; font-weight: 700; font-size: 13px; border: 1px solid transparent; transition: .2s ease; cursor: pointer; }
+    .btn-primary { color: #130f1d; background: var(--purple); box-shadow: 0 8px 30px rgba(124,92,224,.18); }
+    .btn-primary:hover { background: #c0aaff; transform: translateY(-2px); }
+    .btn-ghost { border-color: var(--line); color: var(--text); background: rgba(255,255,255,.025); }
+    .btn-ghost:hover { border-color: rgba(167,139,250,.5); background: rgba(167,139,250,.07); }
+    .menu { display: none; background: none; border: 1px solid var(--line); color: white; border-radius: 9px; padding: 8px 11px; font-size: 18px; }
+    .hero { position: relative; overflow: hidden; padding: 112px 0 96px; }
+    .hero:before { content:""; position:absolute; width:600px; height:600px; border-radius:50%; right:-100px; top:-210px; background: radial-gradient(circle, rgba(124,92,224,.22), transparent 67%); pointer-events:none; }
+    .hero:after { content:""; position:absolute; width:400px; height:400px; border-radius:50%; left:-260px; bottom:-220px; background: radial-gradient(circle, rgba(167,139,250,.12), transparent 68%); pointer-events:none; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 58px; align-items: center; position: relative; z-index: 1; }
+    .eyebrow { color: var(--purple); text-transform: uppercase; letter-spacing: .2em; font-size: 11px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .eyebrow:before { content:""; width: 24px; height: 1px; background: var(--purple); }
+    h1,h2,h3,p { margin-top: 0; }
+    h1 { font: 600 clamp(46px, 6.5vw, 76px)/1.03 "Space Grotesk", sans-serif; letter-spacing: -.055em; margin: 22px 0; max-width: 700px; }
+    .gradient { background: linear-gradient(100deg, #fff 15%, #c4b1ff 75%, #9272ef); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .lead { color: var(--muted); max-width: 540px; font-size: 16px; line-height: 1.8; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .micro { margin-top: 25px; color: #777184; font-size: 11px; letter-spacing: .04em; }
+    .visual { min-height: 390px; position: relative; display: grid; place-items: center; }
+    .orb { position: absolute; width: 290px; height: 290px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, rgba(192,170,255,.27), rgba(124,92,224,.09) 45%, transparent 70%); filter: blur(3px); }
+    .mock { width: min(100%, 390px); position: relative; border: 1px solid rgba(190,170,255,.2); border-radius: 18px; background: linear-gradient(145deg, rgba(29,26,42,.96), rgba(15,14,21,.96)); padding: 18px; box-shadow: 0 28px 90px rgba(0,0,0,.45), 0 0 70px rgba(124,92,224,.12); transform: rotate(2deg); }
+    .mocktop { display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line); padding-bottom:14px; margin-bottom:15px; }
+    .mockbrand { font:700 12px "Space Grotesk"; letter-spacing:.15em; }
+    .live { font-size:10px; color:#bba8ff; }
+    .mockrow { display:flex; align-items:center; gap:11px; padding:10px 9px; border-radius:9px; color:#c8c2d3; font-size:12px; }
+    .mockrow.active { background:rgba(167,139,250,.13); color:white; }
+    .dot { width:7px; height:7px; border-radius:50%; background:var(--purple); box-shadow:0 0 12px var(--purple); }
+    .mockfoot { margin-top:14px; padding:13px; background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:10px; color:#a9a2b6; font-size:10px; }
+    section { padding: 88px 0; }
+    .section-head { max-width: 620px; margin-bottom: 38px; }
+    h2 { font: 600 clamp(32px,4vw,46px)/1.12 "Space Grotesk",sans-serif; letter-spacing:-.04em; margin: 13px 0; }
+    .section-head p { color:var(--muted); margin:0; }
+    .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; }
+    .card { background:linear-gradient(145deg, rgba(24,22,33,.9), rgba(17,16,23,.9)); border:1px solid var(--line); border-radius:15px; padding:25px; transition:.2s; }
+    .card:hover { transform:translateY(-4px); border-color:rgba(167,139,250,.35); }
+    .icon { width:42px; height:42px; display:grid; place-items:center; border-radius:12px; background:rgba(167,139,250,.1); color:var(--purple); font-size:19px; margin-bottom:20px; }
+    .card h3 { font:600 18px "Space Grotesk"; margin-bottom:9px; }
+    .card p { color:var(--muted); font-size:13px; margin:0; line-height:1.75; }
+    .portfolio { background:linear-gradient(180deg, transparent, rgba(24,21,35,.45), transparent); }
+    .project { min-height:210px; display:flex; flex-direction:column; justify-content:space-between; overflow:hidden; position:relative; }
+    .project:after { content:""; position:absolute; width:180px; height:180px; border-radius:50%; right:-70px; top:-65px; background:radial-gradient(circle,rgba(167,139,250,.18),transparent 70%); }
+    .project small { color:var(--purple); text-transform:uppercase; letter-spacing:.14em; font-size:10px; font-weight:700; }
+    .project h3 { font-size:20px; margin:16px 0 6px; }
+    .project p { max-width:260px; }
+    .tag { display:inline-block; border:1px solid var(--line); color:#bdb6ca; padding:5px 9px; border-radius:20px; font-size:10px; margin:4px 4px 0 0; }
+    .notice { color:#a49caf; font-size:11px; margin-top:17px; }
+    .pricing { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; align-items:stretch; }
+    .pricecard { position:relative; }
+    .pricecard.featured { border-color:rgba(167,139,250,.55); box-shadow:0 12px 50px rgba(124,92,224,.1); }
+    .popular { position:absolute; top:16px; right:16px; color:#c6b4ff; font-size:9px; letter-spacing:.1em; text-transform:uppercase; }
+    .price { font:600 34px "Space Grotesk"; margin:12px 0 4px; }
+    .price span { font:400 12px "DM Sans"; color:var(--muted); }
+    .features { list-style:none; padding:0; margin:20px 0 0; color:#c3bdcd; font-size:12px; }
+    .features li { padding:8px 0; border-bottom:1px solid rgba(255,255,255,.055); }
+    .features li:before { content:"✓"; color:var(--purple); margin-right:9px; }
+    .aboutgrid { display:grid; grid-template-columns:.8fr 1.2fr; gap:55px; align-items:start; }
+    .aboutbox { padding:25px; border:1px solid var(--line); border-radius:15px; background:var(--panel); }
+    .aboutbox strong { display:block; font:600 29px "Space Grotesk"; color:var(--purple); }
+    .aboutbox span { color:var(--muted); font-size:12px; }
+    .aboutcopy { color:var(--muted); font-size:14px; line-height:1.9; }
+    .contact { padding-bottom:105px; }
+    .contactbox { border:1px solid rgba(167,139,250,.25); border-radius:20px; padding:clamp(28px,5vw,55px); background:radial-gradient(ellipse at 90% 0%,rgba(124,92,224,.18),transparent 48%), #12111a; display:flex; align-items:center; justify-content:space-between; gap:30px; }
+    .contactbox p { color:var(--muted); margin:0; max-width:510px; font-size:14px; }
+    footer { border-top:1px solid var(--line); padding:25px 0; color:#777184; font-size:11px; }
+    .footin { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+    @media(max-width:800px) {
+      .hero { padding:75px 0 65px; } .hero-grid { grid-template-columns:1fr; gap:15px; } .visual { min-height:330px; }
+      .grid3,.pricing { grid-template-columns:1fr 1fr; } .aboutgrid { grid-template-columns:1fr; gap:25px; }
+      .links { gap:15px; }
+    }
+    @media(max-width:560px) {
+      .wrap { width:min(100% - 32px, var(--max)); } .navin { min-height:66px; } .menu { display:block; }
+      .links { display:none; position:absolute; top:66px; left:0; right:0; padding:18px 22px 22px; background:#100f16; border-bottom:1px solid var(--line); flex-direction:column; align-items:flex-start; }
+      .links.open { display:flex; } .navcta { display:none; }
+      h1 { font-size:49px; } .lead { font-size:14px; } section { padding:66px 0; }
+      .grid3,.pricing { grid-template-columns:1fr; } .contactbox { align-items:flex-start; flex-direction:column; }
+      .visual { min-height:290px; } .mock { transform:none; } .orb { width:230px; height:230px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap navin">
+      <a class="brand" href="#home" aria-label="NEXORA home"><span class="mark">N</span>NEXORA</a>
+      <button class="menu" id="menu" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <nav class="links" id="links">
+        <a href="#services">Services</a><a href="#work">Portfolio</a><a href="#pricing">Pricing</a><a href="#about">About</a>
+      </nav>
+      <a class="btn btn-primary navcta" href="#contact">Start a project ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Discord development studio</div>
+          <h1>Communities,<br><span class="gradient">built differently.</span></h1>
+          <p class="lead">We build clean, organized and thoughtfully designed Discord communities. From a brand-new server to a complete redesign, NEXORA helps bring your community together.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#contact">Let's build your server ↗</a>
+            <a class="btn btn-ghost" href="#work">Explore our work</a>
+          </div>
+          <div class="micro">SERVER SETUP&nbsp;&nbsp;·&nbsp;&nbsp;REDESIGN&nbsp;&nbsp;·&nbsp;&nbsp;BOT CONFIGURATION</div>
+        </div>
+        <div class="visual" aria-label="Illustration of an organized Discord community">
+          <div class="orb"></div>
+          <div class="mock">
+            <div class="mocktop"><div class="mockbrand">NEXORA / COMMUNITY</div><div class="live">● SYSTEM ONLINE</div></div>
+            <div class="mockrow active"><span class="dot"></span> # welcome</div>
+            <div class="mockrow">◇ &nbsp;# announcements</div>
+            <div class="mockrow">◇ &nbsp;# community-chat</div>
+            <div class="mockrow">◇ &nbsp;# support-center</div>
+            <div class="mockrow">◇ &nbsp;# events</div>
+            <div class="mockfoot">A considered structure. Clear permissions. A better community experience.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">What we do</div><h2>Everything your community needs to feel <span class="gradient">put together.</span></h2><p>Practical Discord solutions, planned around how your community actually works.</p></div>
+        <div class="grid3">
+          <article class="card"><div class="icon">⌘</div><h3>Server development</h3><p>Purposeful channel layouts, categories and role structures for new communities.</p></article>
+          <article class="card"><div class="icon">✳</div><h3>Server redesign</h3><p>Give an existing server a clearer structure, cleaner navigation and more consistent look.</p></article>
+          <article class="card"><div class="icon">⚙</div><h3>Bot configuration</h3><p>Set up moderation, welcome, utility and other supported bots to simplify daily management.</p></article>
+          <article class="card"><div class="icon">▤</div><h3>Roles & permissions</h3><p>Thoughtful role hierarchies and channel access that help keep a server organized.</p></article>
+          <article class="card"><div class="icon">▣</div><h3>Ticket systems</h3><p>Organized support flows so members can reach the right team more easily.</p></article>
+          <article class="card"><div class="icon">✧</div><h3>Setup consultation</h3><p>Get help planning the structure and features your community needs before launch.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio" id="work">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">Selected work</div><h2>Built with <span class="gradient">intention.</span></h2><p>A preview of the types of Discord systems we can create.</p></div>
+        <div class="grid3">
+          <article class="card project"><div><small>Demo concept / 01</small><h3>Gaming community</h3><p>A structured home for players, events and community updates.</p></div><div><span class="tag">Roles</span><span class="tag">Moderation</span><span class="tag">Channels</span></div></article>
+          <article class="card project"><div><small>Demo concept / 02</small><h3>Creator community</h3><p>A welcoming space for an audience to connect and get support.</p></div><div><span class="tag">Onboarding</span><span class="tag">Tickets</span><span class="tag">Updates</span></div></article>
+          <article class="card project"><div><small>Demo concept / 03</small><h3>Support hub</h3><p>A simple, organized support experience with clear staff workflows.</p></div><div><span class="tag">Ticket flow</span><span class="tag">Permissions</span><span class="tag">Bots</span></div></article>
+        </div>
+        <p class="notice">Portfolio note: These are illustrative demo concepts, not claimed client projects. Replace them with screenshots and details from your actual work when ready.</p>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">Straightforward pricing</div><h2>Choose the right <span class="gradient">starting point.</span></h2><p>Introductory estimates. Final quotes depend on server size, features and project scope.</p></div>
+        <div class="pricing">
+          <article class="card pricecard"><small class="eyebrow">01 / Essential</small><h3>Starter</h3><div class="price">৳500 <span>/ from</span></div><p class="card p">For a simple, organized community setup.</p><ul class="features"><li>Channels & categories</li><li>Basic roles & permissions</li><li>Welcome message setup</li><li>One basic bot configuration</li></ul></article>
+          <article class="card pricecard featured"><div class="popular">Popular choice</div><small class="eyebrow">02 / Complete</small><h3>Professional</h3><div class="price">৳1,000 <span>/ from</span></div><p class="card p">For communities that need more structure.</p><ul class="features"><li>Custom server structure</li><li>Role & permission setup</li><li>Welcome and moderation bots</li><li>Basic ticket system</li></ul></article>
+          <article class="card pricecard"><small class="eyebrow">03 / Tailored</small><h3>Premium</h3><div class="price">৳2,000 <span>/ from</span></div><p class="card p">For larger or more customized projects.</p><ul class="features"><li>Everything in Professional</li><li>Advanced customization</li><li>Additional bot configuration</li><li>Project-specific requirements</li></ul></article>
+        </div>
+        <p class="notice">Prices are starting estimates, not fixed quotes. We'll confirm deliverables, timing and revisions before work begins.</p>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap aboutgrid">
+        <div><div class="eyebrow">A little about NEXORA</div><h2>Good communities start with <span class="gradient">good foundations.</span></h2></div>
+        <div><p class="aboutcopy">NEXORA is an independent Discord setup and customization service focused on making online communities easier to navigate and manage. We care about clear structure, sensible permissions and a polished experience — without adding complexity just for the sake of it.</p><p class="aboutcopy">Every project starts with understanding what the community needs. From there, we plan the setup, agree on the scope and build with care.</p><div class="aboutbox"><strong>Thoughtful by design.</strong><span>Clear structure. Useful systems. Communities that work.</span></div></div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <div class="contactbox">
+          <div><div class="eyebrow">Have a project in mind?</div><h2>Let's build something <span class="gradient">better.</span></h2><p>Tell us what you're creating, what your server needs and your approximate budget. We'll get back to you with a clear next step.</p></div>
+          <a class="btn btn-primary" href="https://discord.com/" target="_blank" rel="noopener">Contact on Discord ↗</a>
+        </div>
+        <p class="notice">Before publishing: replace the Discord link above with your own profile or server invite. Add only contact details you are comfortable sharing publicly.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footin"><div class="brand"><span class="mark">N</span>NEXORA</div><div>Independent Discord setup & customization service.</div><div>© <span id="year"></span> NEXORA. All rights reserved.</div></div></footer>
+  <script>
+    const menu = document.getElementById('menu');
+    const links = document.getElementById('links');
+    menu.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      menu.setAttribute('aria-expanded', String(open));
+    });
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      links.classList.remove('open'); menu.setAttribute('aria-expanded', 'false');
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
